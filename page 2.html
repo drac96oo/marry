@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Marry Me?</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(to bottom, #e74c3c, #c0392b); /* Dark red to light red gradient */
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .container {
+            text-align: center;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.5em;
+            margin-bottom: 30px;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .button {
+            background-color: #e74c3c;
+            color: white;
+            font-size: 1.5em;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #c0392b;
+            transform: scale(1.1);
+        }
+
+        .no-button {
+            background-color: #3498db;
+        }
+
+        .no-button:active {
+            transform: scale(0.95);
+        }
+
+        .yes-button {
+            background-color: #2ecc71;
+        }
+
+        .yes-button:active {
+            transform: scale(0.95);
+        }
+
+        .yes-button-transition {
+            animation: yesTransition 2s ease-in-out forwards;
+        }
+
+        @keyframes yesTransition {
+            0% {
+                background-color: #2ecc71;
+            }
+            100% {
+                background-color: #f39c12;
+                transform: scale(1.2);
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Will You Marry Me?</h1>
+    <p>Choose an answer:</p>
+    <div class="button-container">
+        <button class="button no-button" id="noButton">No</button>
+        <button class="button yes-button" id="yesButton">Yes</button>
+    </div>
+</div>
+
+<script>
+    const noButton = document.getElementById("noButton");
+    const yesButton = document.getElementById("yesButton");
+
+    // Function to get random position for the "No" button
+    function getRandomPosition() {
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+        const randomX = Math.floor(Math.random() * (width - 200));  // Random X position within the window
+        const randomY = Math.floor(Math.random() * (height - 100));  // Random Y position within the window
+        return { x: randomX, y: randomY };
+    }
+
+    // When "No" is clicked, move to a random position
+    noButton.addEventListener("click", () => {
+        const { x, y } = getRandomPosition(); // Get random coordinates
+        noButton.style.position = 'absolute';
+        noButton.style.left = `${x}px`;
+        noButton.style.top = `${y}px`;
+    });
+
+    // When "Yes" is clicked, change background and transition effect, then redirect to music video
+    yesButton.addEventListener("click", () => {
+        yesButton.classList.add("yes-button-transition");
+        setTimeout(() => {
+            window.location.href = 'https://www.youtube.com/watch?v=kPa7bsKwL-c&pp=ygUQZGllIHdpdGggYSBzbWlsZQ%3D%3D'; // Bruno Mars and Lady Gaga "Die With A Smile" music video
+        }, 2000); // Transition for the "Yes" button takes 2 seconds
+    });
+</script>
+
+</body>
+</html>
